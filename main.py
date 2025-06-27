@@ -43,5 +43,9 @@ correlation = gold_data.drop('Date', axis=1).corr()
 
 # constructing a heatmap to understand the correlation
 
-plt.figure(fidsize = (8,8))
-sns.heatmap(correlation, cbar= True, square=True, fmt='.1f', annot= True, annot_kws={'size': 8}, cmap='blues')
+#plt.figure(fidsize = (8,8))
+#sns.heatmap(correlation, cbar= True, square=True, fmt='.1f', annot= True, annot_kws={'size': 8}, cmap='blues')
+
+plt.figure(figsize = (8,8))
+sns.heatmap(correlation, annot=True, cbar=True, square = True,fmt = '.1f'  ,annot_kws={'size': 8}   , cmap='Blues')
+plt.show()
