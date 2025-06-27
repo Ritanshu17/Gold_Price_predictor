@@ -12,26 +12,26 @@ from sklearn import metrics #to accuracy of model
 gold_data = pd.read_csv('gld_price_data.csv')
 
 #print first 5 rows in the dataframe
-#print(gold_data.head())
+print(gold_data.head())
 
 #print last 5 rows in the dataframe
-#print(gold_data.tail())
+print(gold_data.tail())
 
 #number for rows and column
 
-#print(gold_data.shape)
+print(gold_data.shape)
 
 #getting some basic information about the data
 
-#print(gold_data.info())
+print(gold_data.info())
 
 #checking the null value in dataframe
 
-#print(gold_data.isnull().sum())
+print(gold_data.isnull().sum())
 
 #getting statistical measures of the data 
 
-#print(gold_data.describe())
+print(gold_data.describe())
 
 #to to check correlation
 '''
