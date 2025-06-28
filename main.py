@@ -43,9 +43,50 @@ correlation = gold_data.drop('Date', axis=1).corr()
 
 # constructing a heatmap to understand the correlation
 
-#plt.figure(fidsize = (8,8))
-#sns.heatmap(correlation, cbar= True, square=True, fmt='.1f', annot= True, annot_kws={'size': 8}, cmap='blues')
-
 plt.figure(figsize = (8,8))
 sns.heatmap(correlation, annot=True, cbar=True, square = True,fmt = '.1f'  ,annot_kws={'size': 8}   , cmap='Blues')
+plt.show()
+
+#correlation values of GLD
+print(correlation['GLD'])
+
+# check to distribution of the GLD price
+sns.displot(gold_data['GLD'], color='green')
+plt.show()
+
+# splitting the features and Target
+x = gold_data.drop(['Date','GLD'],axis = 1 )
+y = gold_data['GLD']
+
+#now sepreating x and y into test data and training data 
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=3) 
+
+#model training : Random forest regressor
+regressor = RandomForestRegressor(n_estimators=100)
+
+#training the model
+regressor.fit(x_train, y_train)
+print(regressor)
+
+
+
+#prediction on test data
+
+test_data_prediction = regressor.predict(x_test)
+print(test_data_prediction)
+
+# Evaluate the model
+r2 = metrics.r2_score(y_test, test_data_prediction)
+print(f"R² Score: {r2:.4f}")
+
+#comparing the actual value and the predicted value 
+
+y_test = list()
+plt.plot(y_test, color='blue', label='acutal value')
+plt.plot(test_data_prediction, color='green', label='predicted value')
+
+plt.title('actual value vs predicted value')
+plt.xlabel('number of values')
+plt.ylabel('gold price')
+plt.legend()
 plt.show()
